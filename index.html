@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio – Aya El hansak</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- =====================
+     CONFIGURATION ET STYLES DU SITE
+     Palette beige / nude / rose + responsive + Bootstrap
+===================== -->
+  <style>
+    /* ===================== PALETTE DE COULEURS ===================== */
+    :root {
+      --bg-cream: #f8f4f1;
+      --beige: #e6d8c9;
+      --nude: #e8cfc5;
+      --rose: #e7a9b2;
+      --taupe: #8a7f7a;
+      --ink: #2f2a28;
+      --white: #ffffff;
+    }
+
+    /* ===================== SCROLL DOUX ===================== */
+
+    html,
+    body {
+      scroll-behavior: smooth;
+    }
+
+    /* ===================== STYLES GLOBAUX DU BODY =====================
+       - Couleur de fond
+       - Couleur du texte
+       - Police
+    =================================================================== */
+    body {
+      background: var(--bg-cream);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    /* ===================== NAVBAR — STYLE =====================
+       - Fond translucide
+       - Effet de flou (backdrop-filter)
+       - Bord en bas
+    ============================================================ */
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* ===================== BOUTON PRINCIPAL (ROSE) ===================== */
+    .btn-rose {
+      background: var(--rose);
+      color: var(--white);
+      border: none;
+    }
+
+    .btn-rose:hover {
+      filter: brightness(0.95);
+    }
+
+    /* ===================== BOUTON SECONDAIRE (CONTOUR NUDE) ===================== */
+    .btn-outline-nude {
+      border-color: var(--nude);
+      color: var(--ink);
+    }
+
+    .btn-outline-nude:hover {
+      background: var(--nude);
+      color: var(--ink);
+    }
+
+
+    /* ===================== ESPACEMENT DES SECTIONS ===================== */
+    section {
+      padding: 72px 0;
+    }
+
+    /* ===================== SECTION HERO ===================== 
+       - Dégradé de fond
+       - Padding haut/bas
+    ========================================================== */
+    .hero {
+      background: linear-gradient(180deg, rgba(231, 169, 178, 0.12), rgba(230, 216, 201, 0.20));
+      padding-top: 120px;
+      padding-bottom: 96px;
+    }
+
+    /* ===================== PHOTO DE PROFIL ===================== */
+    .hero .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid var(--white);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ===================== TITRES DE SECTION ===================== */
+
+    .section-title {
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+
+    /* ===================== CARDS DE PROJETS ===================== */
+
+    .project-card {
+      border: none;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .project-card .card-header {
+      background: var(--white);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* ===================== BARRES DE PROGRESSION ===================== */
+
+    .progress {
+      height: 8px;
+      background: rgba(0, 0, 0, 0.06);
+    }
+
+    .progress-bar {
+      background: var(--rose);
+    }
+
+    footer {
+      background: var(--white);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      color: var(--taupe);
+    }
+
+
+    /* ===================== OFFSET POUR LES ANCRES =====================
+       Permet d'éviter que la navbar masque le début des sections
+    ==================================================================== */
+    .anchor-offset {
+      position: relative;
+      top: -80px;
+      visibility: hidden;
+    }
+
+    /* ===================== RESPONSIVE (PETITS ÉCRANS) ===================== */
+
+    @media (max-width: 575.98px) {
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===================== NAVIGATION (Navbar fixe) =====================
+     Barre de navigation qui reste en haut
+     Utilise Bootstrap pour la gestion du mobile
+===================================================================== -->
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <!-- nom du site -->
+      <a class="navbar-brand fw-semibold" href="#home">Aya • Portfolio</a>
+      <!-- Bouton pour les petits écrans -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+        aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Liens de navigation -->
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#about">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projets</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Compétences</a></li>
+          <li class="nav-item"><a class="nav-link" href="#awards">Réalisations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== SECTION ACCUEIL / HERO =====================
+       Contient :
+       - Photo de profil
+       - Nom
+       - Ligne de description
+       - Slogan
+       - Boutons vers projets / contact
+  ==================================================================== -->
+  <main id="home" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-12 col-lg-5 text-center text-lg-start">
+          <img class="avatar" src="img/aya.jpg" alt="Photo de profil Aya" />
+        </div>
+        <div class="col-12 col-lg-7">
+          <h1 class="fw-bold mb-3">Aya El hansak</h1>
+          <p class="lead mb-3">4<sup>e</sup> année – Informatique Appliquée (Université de Moncton). Passionnée par
+            l’IA, le développement Web et les solutions orientées données.</p>
+          <p class="mb-4 fst-italic">« To make computer science students passionate about AI and web dev. »</p>
+          <!-- Boutons d'action -->
+          <div class="d-flex gap-2">
+            <a class="btn btn-rose" href="#projects"><i class="bi bi-rocket-takeoff me-2"></i>Voir mes projets</a>
+            <a class="btn btn-outline-nude" href="#contact"><i class="bi bi-envelope me-2"></i>Me contacter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Ancre pour le scroll vers "À propos" -->
+  <span id="about" class="anchor-offset"></span>
+
+  <!-- ===================== SECTION À PROPOS =====================
+       Brève biographie
+  ================================================================= -->
+  <section aria-labelledby="aboutTitle">
+    <div class="container">
+      <h2 id="aboutTitle" class="section-title">À propos</h2>
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="p-4 bg-white rounded-4 border">
+            <p>
+              Étudiante en informatique appliquée à l’Université de Moncton, j’ai développé des
+              compétences solides en développement logiciel, traitement de
+              données,modélisation et télédétection. J’aime concevoir des solutions efficaces et structurées, apprendre
+              de nouvelles technologies et collaborer sur des projets qui apportent une réelle valeur.
+            </p>
+            <p class="mb-0">Je suis à la recherche d'un stage pour l'été 2025 (mai → août).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Ancre pour le scroll vers "Projets" -->
+  <span id="projects" class="anchor-offset"></span>
+
+  <!-- ===================== SECTION PROJETS =====================
+       3 projets :
+       1) Estimation qualité de l’eau
+       2) Détection de visages
+       3) Optimisation SQL (UNI)
+  ================================================================= -->
+  <section aria-labelledby="projectsTitle">
+    <div class="container">
+      <h2 id="projectsTitle" class="section-title">Projets réalisés</h2>
+
+      <div class="row g-4">
+        <!-- ========== PROJET 1 : Estimation de la qualité de l’eau ========== -->
+        <div class="col-12 col-lg-6">
+          <div class="card project-card rounded-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <span class="fw-semibold">Estimation de la qualité de l’eau (Sentinel‑2 & Landsat)</span>
+              <span class="badge text-bg-light">Python · GEE</span>
+            </div>
+            <div class="card-body">
+              <!-- Carousel d'images du projet 1 -->
+              <div id="carouselWater" class="carousel slide mb-3" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3">
+                  <div class="carousel-item active">
+                    <img src="img/Image1.png" class="d-block w-100" alt="modele apres classification" />
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/Image2.png" class="d-block w-100" alt="Signature Spectrale" />
+                  </div>
+                </div>
+                <!-- Contrôles précédent/suivant -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselWater"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselWater"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+              <p class="mb-2">
+                <!-- Description du projet 1 -->
+                Utilisation de bases de données gouvernementales avec mesures in situ des paramètres de la qualité de
+                l'eau, application
+                de masques eau/terre et nuages, extraction
+                des valeurs spectrales aux stations, puis calibration et validation d’un
+                classificateur Random Forest pour estimer l’état trophique à partir d’images
+                Sentinel-2 et Landsat.
+              </p>
+              <ul class="mb-3 small">
+                <li>Technos : Python, Pandas, Rasterio, Google Earth Engine, QGIS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== PROJET 2 : Détection de visage OpenCV ========== -->
+        <div class="col-12 col-lg-6">
+          <div class="card project-card rounded-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <span class="fw-semibold">Détection de visages (OpenCV DNN)</span>
+              <span class="badge text-bg-light">Python · OpenCV</span>
+            </div>
+            <div class="card-body">
+              <!-- Carousel d'images du projet 2 -->
+              <div id="carouselFace" class="carousel slide mb-3" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3">
+                  <div class="carousel-item active">
+                    <img src="img/Image3.png" class="d-block w-100" alt="Détection visages" />
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/Image4.webp" class="d-block w-100" alt="Détection visages" />
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselFace" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselFace" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+              <p class="mb-2">
+                <!-- Description du projet 2 -->
+                Création d’un système de détection en Python, d’abord avec les classifieurs Haar
+                d’OpenCV, puis amélioré avec un modèle DNN SSD basé sur Caffe. Le programme permet
+                la détection en temps réel via webcam avec ajustement du seuil de confiance et
+                affichage des bounding boxes.
+              </p>
+              <ul class="mb-3 small">
+                <li>Technos : OpenCV, modèles Caffe SSD, Python</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========== PROJET 3 : Optimisation SQL et Pipelines de Données (UNI) ========== -->
+        <div class="col-12">
+          <div class="card project-card rounded-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <span class="fw-semibold">Optimisation SQL et Fiabilité des Pipelines de Données</span>
+              <span class="badge text-bg-light">SQL · Data</span>
+            </div>
+            <div class="card-body">
+              <!-- Carousel d'images du projet 3 -->
+              <div id="carouselUNI" class="carousel slide mb-3" data-bs-ride="carousel">
+                <div class="carousel-inner rounded-3">
+                  <div class="carousel-item active">
+                    <img src="img/Image6.png" class="d-block w-100" alt="Code" />
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/Image5.png" class="d-block w-100" alt="UNI" />
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselUNI" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselUNI" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Suivant</span>
+                </button>
+              </div>
+              <p class="mb-2">
+                <!-- Description du projet 3 -->
+                Optimisation des pipelines de données chez UNI Coopération Financière, incluant
+                la conception de tables plus efficaces et l’amélioration de la vitesse de traitement
+                ainsi que de l’intégrité des données. Contribution au développement des pipelines
+                Finacle pour fiabiliser les chargements quotidiens et collaboration avec l’équipe
+                pour standardiser et simplifier les workflows de bases de données.
+              </p>
+              <ul class="mb-3 small">
+                <li>Technos : SQL Server, optimisation de requêtes, analyse de structures de tables</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Ancre pour le scroll vers "Compétences" -->
+  <span id="skills" class="anchor-offset"></span>
+
+  <!-- ===================== SECTION COMPÉTENCES =====================
+       Barres de progression pour montrer les niveaux de chaque compétence
+  =================================================================== -->
+  <section aria-labelledby="skillsTitle">
+    <div class="container">
+      <h2 id="skillsTitle" class="section-title">Compétences</h2>
+
+      <div class="row g-4">
+        <div class="col-12">
+          <div class="p-4 bg-white rounded-4 border h-100">
+
+            <!-- Python -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>Python</span><span>Avancé</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:85%"></div>
+              </div>
+            </div>
+
+            <!-- SQL -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>SQL</span><span>Avancé</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:85%"></div>
+              </div>
+            </div>
+
+            <!-- GEE / QGIS -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>GEE / QGIS</span><span>Intermédiaire+</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:70%"></div>
+              </div>
+            </div>
+
+            <!-- C++ -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>C++</span><span>Avancé+</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:90%"></div>
+              </div>
+            </div>
+
+            <!-- HTML / CSS / Bootstrap -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>HTML / CSS / Bootstrap</span><span>Intermédiaire+</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:80%"></div>
+              </div>
+            </div>
+
+            <!-- C# -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>C#</span><span>Débutante</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:35%"></div>
+              </div>
+            </div>
+
+            <!-- Java -->
+            <div class="mb-3">
+              <div class="d-flex justify-content-between small mb-1">
+                <span>Java</span><span>Intermédiaire</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width:50%"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ancre pour le scroll vers "Réalisations" -->
+  <span id="awards" class="anchor-offset"></span>
+
+  <!-- ===================== RÉALISATIONS & RÉCOMPENSES =====================
+       Certifications + stages importants
+  ======================================================================== -->
+  <section aria-labelledby="awardsTitle">
+    <div class="container">
+      <h2 id="awardsTitle" class="section-title">Réalisations & Récompenses</h2>
+
+      <div class="row g-4">
+        <!-- Carte 1 : Certificat ADF -->
+        <div class="col-12 col-lg-4">
+          <div class="card rounded-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Certification</h5>
+              <p class="card-text small">Certificat LinkedIn Learning – Azure Data Factory, 2024.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Carte 2 : Certificat Python -->
+        <div class="col-12 col-lg-4">
+          <div class="card rounded-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Certification</h5>
+              <p class="card-text small">Certificat LinkedIn Learning – L'essentiel de Python, 2024.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Carte 3 : Stage UNI -->
+        <div class="col-12 col-lg-4">
+          <div class="card rounded-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Stage I</h5>
+              <p class="card-text small">Stagiaire en intelligence d'affaires-Uni Coopération Financiere,Moncton.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Carte 4 : Stage INRS -->
+        <div class="col-12 col-lg-4">
+          <div class="card rounded-4 border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Stage II</h5>
+              <p class="card-text small">Stagiaire en télédétection et traitement d'images satellites-INRS,Québec.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Ancre pour le scroll vers "Contact" -->
+  <span id="contact" class="anchor-offset"></span>
+
+  <!-- ===================== SECTION CONTACT =====================
+       - Liens (LinkedIn, GitHub, courriel)
+       - Formulaire de contact (statique)
+  ================================================================= -->
+  <section aria-labelledby="contactTitle">
+    <div class="container">
+      <h2 id="contactTitle" class="section-title">Coordonnées & Contact</h2>
+
+      <div class="row g-4">
+        <div class="col-12 col-lg-6">
+          <div class="p-4 bg-white rounded-4 border h-100">
+            <h6 class="fw-semibold mb-3">Mes liens</h6>
+            <ul class="list-unstyled small mb-0">
+              <li class="mb-2"><i class="bi bi-linkedin me-2"></i><a target="_blank" rel="noopener"
+                  href="https://www.linkedin.com/in/aya-el-hansak-17a613246/">LinkedIn – Aya El hansak</a></li>
+              <li class="mb-2"><i class="bi bi-github me-2"></i><a target="_blank" rel="noopener"
+                  href="https://github.com/AyaElh065">GitHub - Aya El hansak</a></li>
+              <li class="mb-2">
+                <i class="bi bi-envelope me-2"></i>
+                <a href="mailto:elhansakaya11@gmail.com">elhansakaya11@gmail.com</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Bloc avec le formulaire de contact -->
+        <div class="col-12 col-lg-6">
+          <div class="p-4 bg-white rounded-4 border h-100">
+            <h6 class="fw-semibold mb-3">Écris‑moi</h6>
+            <form>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label for="name" class="form-label">Nom</label>
+                  <input type="text" class="form-control" id="name" placeholder="Votre nom" required>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="nom@exemple.com" required>
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" rows="4" placeholder="Votre message…" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-rose">Envoyer</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="py-4 mt-5">
+    <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+      <div class="small">© <span id="year"></span> Aya El hansak — Tous droits réservés.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
